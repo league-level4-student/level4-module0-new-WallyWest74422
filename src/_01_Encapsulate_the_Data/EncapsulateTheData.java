@@ -8,12 +8,19 @@ public class EncapsulateTheData {
 
 	// 3. Pass all the JUnit tests.
 
-	/* 
+	/*
 	 * All negative arguments should set itemsReceived to 0.
 	 */
 
-	int itemsReceived;
+	private int itemsReceived;
 
+	public void setItemsReceived(int itemsReceived) {
+		if (itemsReceived <= 0) {
+			this.itemsReceived = 0;
+		} else {
+			this.itemsReceived = itemsReceived;
+		}
+	}
 	/*
 	 * degreesTurned must be locked between 0.0 and 360.0 inclusive.
 	 * 
@@ -21,7 +28,17 @@ public class EncapsulateTheData {
 	 * bound.
 	 */
 
-	double degreesTurned;
+	private double degreesTurned;
+
+	public void setDegreesTurned(double degreesTurned) {
+		if (degreesTurned < 0.0) {
+			this.degreesTurned = 0.0;
+		} else if (degreesTurned > 360) {
+			this.degreesTurned = 360;
+		} else {
+			this.degreesTurned = degreesTurned;
+		}
+	}
 
 	/*
 	 * nomenclature must not contain an empty String.
@@ -30,7 +47,15 @@ public class EncapsulateTheData {
 	 * space.
 	 */
 
-	String nomenclature;
+	private String nomenclature;
+
+	public void setNomenclature(String nomenclature) {
+		if (nomenclature.equals("")) {
+			this.nomenclature = " ";
+		} else {
+			this.nomenclature = nomenclature;
+		}
+	}
 
 	/*
 	 * memberObj must not be a String.
