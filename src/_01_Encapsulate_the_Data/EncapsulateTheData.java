@@ -15,7 +15,7 @@ public class EncapsulateTheData {
 	private int itemsReceived;
 
 	public void setItemsReceived(int itemsReceived) {
-		if (itemsReceived <= 0) {
+		if (itemsReceived < 0) {
 			this.itemsReceived = 0;
 		} else {
 			this.itemsReceived = itemsReceived;
@@ -73,6 +73,37 @@ public class EncapsulateTheData {
 	 * System.out.println(rob instanceof Random); //prints false
 	 */
 
-	Object memberObj;
+private	Object memberObj;
+
+public void setMemberObj(Object memberObj) {
+boolean test = (memberObj instanceof String);
+		if(test==true) {
+			this.memberObj = new Object();
+		}		else {
+			this.memberObj = memberObj;
+		}
+	}
+
+
+	 public Integer getItemsReceived() {
+		// TODO Auto-generated method stub
+		return itemsReceived;
+	}
+
+	public Double getDegreesTurned() {
+		// TODO Auto-generated method stub
+		return degreesTurned;
+	}
+
+	public Object getNomenclature() {
+		// TODO Auto-generated method stub
+		return nomenclature;
+	}
+
+
+	public Object getMemberObj() {
+		// TODO Auto-generated method stub
+		return memberObj;
+	}
 
 }
