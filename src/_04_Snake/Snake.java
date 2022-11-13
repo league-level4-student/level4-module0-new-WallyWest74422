@@ -37,7 +37,8 @@ public class Snake {
 		 * Create variables for the next X and Y location of the snake's head.
 		 * Initialize them to the current X and Y locations.
 		 */
-
+int nextX = this.getHeadLocation().x;
+int nextY = this.getHeadLocation().y;
 		/*
 		 * Use a switch statement to check on the currentDirection of the snake and
 		 * calculate the head's next x and y position. Depending on the direction, the
@@ -70,7 +71,9 @@ public class Snake {
 		 * 
 		 * Hint: Use the isNotOppositeDirection method.
 		 */
-
+if(isNotOppositeDirection(direction)==true && canMove == true){
+	this.currentDirection = direction;
+}
 	}
 
 	private boolean isNotOppositeDirection(Direction direction) {
@@ -82,7 +85,18 @@ public class Snake {
 		 * For example, if currentDirection is UP and the passed in direction is DOWN
 		 * this method should return false.
 		 */
-
+		if(direction.equals(Direction.UP)&& currentDirection.equals(Direction.DOWN)) {
+			return false;
+		}
+		if(direction.equals(Direction.DOWN)&& currentDirection.equals(Direction.UP)) {
+			return false;
+		}
+		if(direction.equals(Direction.RIGHT)&& currentDirection.equals(Direction.LEFT)) {
+			return false;
+		}
+		if(direction.equals(Direction.LEFT)&& currentDirection.equals(Direction.RIGHT)) {
+			return false;
+		}
 		return true;
 	}
 

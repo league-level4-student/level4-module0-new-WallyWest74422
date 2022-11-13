@@ -47,7 +47,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 	private Location foodLocation;
 
 	public SnakeGame() {
-		snake = new Snake(new Location(WIDTH / 2, HEIGHT / 2));
+		snake = new Snake(new equals(WIDTH / 2, HEIGHT / 2));
 
 		window = new JFrame("Snake");
 		panel = new JPanel() {
@@ -116,8 +116,24 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * 
 		 * Hint: KeyEvent.VK_UP.
 		 */
-
-	}
+switch (KeyEvent.KEY_PRESSED){
+case KeyEvent.VK_UP:
+	snake.setDirection(Direction.UP);
+	break;
+case KeyEvent.VK_DOWN:
+	snake.setDirection(Direction.DOWN);
+	break;
+case KeyEvent.VK_RIGHT:
+	snake.setDirection(Direction.RIGHT);
+	break;
+case KeyEvent.VK_LEFT:
+	snake.setDirection(Direction.LEFT);
+	break;
+default:
+	break;
+}
+}
+	
 
 	private void randomizeFoodLocation() {
 
@@ -125,8 +141,11 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * Create a new Location object that is set to a random x and y values between 0
 		 * and the WIDTH and HEIGHT variables respectively.
 		 */
+Random ranX = new Random(WIDTH);
+Random ranY = new Random(HEIGHT);
 
-
+Location ranLocation = new Location(ranX.nextInt(WIDTH), ranY.nextInt(HEIGHT));
+Location foodLocation = ranLocation;
 		/*
 		 * Set the foodLocation equal to the Location object you just created.
 		 * 
@@ -139,9 +158,9 @@ public class SnakeGame implements ActionListener, KeyListener {
 	private void gameOver() {
 
 		// Stop the timer.
-
+timer.stop();
 		// Tell the user their snake is dead.
-
+JOptionPane.showMessageDialog(null, "Sorry, your snake has died. :(");
 		// Ask the user if they want to play again.
 
 

@@ -37,7 +37,7 @@ enum StatesOfMatter {
 			}
 		}
 		Random ran = new Random(States.length);
-		StatesOfMatter randomState = States[ran.nextInt()];
+		StatesOfMatter randomState = States[ran.nextInt(States.length-1)];
 		System.out.println("Random State " +randomState);
 		System.out.println(randomState.celsiusTemp);
 		System.out.println(randomState.convertToFahrenheit(0));
