@@ -47,7 +47,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 	private Location foodLocation;
 
 	public SnakeGame() {
-		snake = new Snake(new equals(WIDTH / 2, HEIGHT / 2));
+		snake = new Snake(new Location(WIDTH / 2, HEIGHT / 2));
 
 		window = new JFrame("Snake");
 		panel = new JPanel() {
@@ -145,7 +145,12 @@ Random ranX = new Random(WIDTH);
 Random ranY = new Random(HEIGHT);
 
 Location ranLocation = new Location(ranX.nextInt(WIDTH), ranY.nextInt(HEIGHT));
-Location foodLocation = ranLocation;
+if(snake.isLocationOnSnake(ranLocation)== false) {
+	 foodLocation = ranLocation;
+}else {
+	 foodLocation = new Location(ranX.nextInt(WIDTH), ranY.nextInt(HEIGHT));
+}
+
 		/*
 		 * Set the foodLocation equal to the Location object you just created.
 		 * 
@@ -160,11 +165,18 @@ Location foodLocation = ranLocation;
 		// Stop the timer.
 timer.stop();
 		// Tell the user their snake is dead.
-JOptionPane.showMessageDialog(null, "Sorry, your snake has died. :(");
+JOptionPane.showMessageDialog(null, "Sorry, your snake ha muerto. :(");
 		// Ask the user if they want to play again.
+String playAgain = JOptionPane.showInputDialog("Do you want to try again? If you would like to play again, please enter 'YES'. Otherwise, just exit this message");
+if(playAgain.equals("YES")) {
+	snake.resetLocation();
+	randomizeFoodLocation();
+	timer.start();
+}else {
+	timer.stop();
+}
 
-
-		/*
+	/*
 		 * If the user wants to play again, call the snake's resetLocation method and
 		 * this class's randomizeFoodLocation method then restart the timer. Otherwise,
 		 * exit the game.
@@ -176,18 +188,29 @@ JOptionPane.showMessageDialog(null, "Sorry, your snake has died. :(");
 	public void actionPerformed(ActionEvent e) {
 
 		// Call the snake's update method.
-
+snake.update();
 		/*
 		 * If the snake's head is colliding with its own body or out of bounds call the
 		 * gameOver method.
 		 */
+if(snake.isHeadCollidingWithBody()== true) {
+	gameOver();
+	System.out.println("Collision.");
+}
 
+if(snake.isOutOfBounds()==true) {
+	gameOver();
+	System.out.println("OutOfBounds.");
+}
 
 		/*
 		 * If the location of the snake's head is equal to the location of the food,
 		 * feed the snake and randomize the food location.
 		 */
-
+if(snake.getHeadLocation()==foodLocation) {
+	snake.feed();
+	randomizeFoodLocation();
+}
 		panel.repaint();
 	}
 }
