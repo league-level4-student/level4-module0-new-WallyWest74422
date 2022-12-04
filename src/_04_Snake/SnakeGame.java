@@ -116,20 +116,25 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * 
 		 * Hint: KeyEvent.VK_UP.
 		 */
-switch (KeyEvent.KEY_PRESSED){
+switch (e.getKeyCode()){
 case KeyEvent.VK_UP:
-	snake.setDirection(Direction.UP);
+	snake.setDirection(Direction.DOWN);
+	System.out.println("UP");
 	break;
 case KeyEvent.VK_DOWN:
-	snake.setDirection(Direction.DOWN);
+	snake.setDirection(Direction.UP);
+	System.out.println("DOWN");
 	break;
 case KeyEvent.VK_RIGHT:
 	snake.setDirection(Direction.RIGHT);
+	System.out.println("RIGHT");
 	break;
 case KeyEvent.VK_LEFT:
 	snake.setDirection(Direction.LEFT);
+	System.out.println("LEFT");
 	break;
 default:
+	System.out.println("Not from switch.");
 	break;
 }
 }
@@ -202,15 +207,19 @@ if(snake.isOutOfBounds()==true) {
 	gameOver();
 	System.out.println("OutOfBounds.");
 }
-
+	 
 		/*
 		 * If the location of the snake's head is equal to the location of the food,
 		 * feed the snake and randomize the food location.
 		 */
-if(snake.getHeadLocation()==foodLocation) {
+
+if(snake.head.getLocation().x==foodLocation.x && snake.head.getLocation().y==foodLocation.y) {
 	snake.feed();
+	System.out.println("Snake fed.");
 	randomizeFoodLocation();
+	System.out.println("randomizeFoodLocation.");
 }
 		panel.repaint();
+	System.out.println("panel repainted.");
 	}
 }
