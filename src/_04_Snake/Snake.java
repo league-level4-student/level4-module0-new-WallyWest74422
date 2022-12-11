@@ -69,10 +69,13 @@ public class Snake {
 		 * Use a loop starting at the end of the ArrayList and stop before the head of
 		 * the snake (index 0) or you will go out of bounds.
 		 */
-	for (int i = snake.size(); i > 1; i--) {
+	for (int i = snake.size() -1; i > 0; i--) {
 			snake.get(i).setLocation(snake.get(i -1).getLocation());
 		}
 		System.out.println("After for-Loop.");
+		
+		
+		
 		/*
 		 * Create a new Location object and initialize it with the values calculated in
 		 * the first step. Then set the head's location equal to the new location.
@@ -138,7 +141,7 @@ public class Snake {
 		 */
 		head = new SnakeSegment(headLocation, BODY_SIZE);
 		// Add the head to the snake.
-
+snake.add(head);
 	}
 
 	public boolean isOutOfBounds() {
@@ -184,8 +187,12 @@ public class Snake {
 		 * Complete the method so it returns true if the passed in location is located
 		 * on the snake.
 		 */
-		if (head.getLocation() == loc) {
-			return true;
+		for(int i=0; i<snake.size(); i++) {
+		boolean onSnake = (snake.get(i).getLocation().equals(loc)); {
+				if(onSnake == true) {
+					return true;
+				}
+			}
 		}
 		return false;
 	}

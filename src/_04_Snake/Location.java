@@ -19,12 +19,10 @@ public class Location {
 	}
 	public int getX() {
 		// TODO Auto-generated method stub
-		this.x=x;
 				return x;
 	}
 	public int getY() {
 		// TODO Auto-generated method stub
-		this.y=y;
 				return y;
 	}
 }
